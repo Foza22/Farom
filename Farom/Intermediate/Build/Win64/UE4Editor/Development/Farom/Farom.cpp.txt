@@ -1,2 +1,0 @@
-C:\Users\mi\Documents\Farom\Farom\Intermediate\Build\Win64\UE4Editor\Development\Farom\Definitions.Farom.h
-C:\Users\mi\Documents\Farom\Farom\Source\Farom\Farom.h
