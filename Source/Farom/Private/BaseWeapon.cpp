@@ -13,6 +13,7 @@ ABaseWeapon::ABaseWeapon()
 	PrimaryActorTick.bCanEverTick = false;
 
 	// Create mesh for weapon
+	// Choose mesh in blueprint
 	WeaponMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
 	SetRootComponent(WeaponMesh);
 
