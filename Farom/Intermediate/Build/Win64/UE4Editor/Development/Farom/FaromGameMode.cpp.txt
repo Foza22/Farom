@@ -1,0 +1,15 @@
+C:\Users\mi\Documents\Farom\Farom\Intermediate\Build\Win64\UE4Editor\Development\Farom\Definitions.Farom.h
+C:\Users\mi\Documents\Farom\Farom\Source\Farom\FaromGameMode.h
+D:\Unreal engine\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
+D:\Unreal engine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
+D:\Unreal engine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
+D:\Unreal engine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
+C:\Users\mi\Documents\Farom\Farom\Intermediate\Build\Win64\UE4Editor\Inc\Farom\FaromGameMode.generated.h
+C:\Users\mi\Documents\Farom\Farom\Source\Farom\FaromCharacter.h
+D:\Unreal engine\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/Character.h
+D:\Unreal engine\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/CharacterMovementReplication.h
+D:\Unreal engine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CharacterMovementReplication.generated.h
+D:\Unreal engine\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/RootMotionSource.h
+D:\Unreal engine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
+D:\Unreal engine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
+C:\Users\mi\Documents\Farom\Farom\Intermediate\Build\Win64\UE4Editor\Inc\Farom\FaromCharacter.generated.h

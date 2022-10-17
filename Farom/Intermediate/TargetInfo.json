@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "Farom",
+			"Path": "C:\\Users\\mi\\Documents\\Farom\\Farom\\Source\\Farom.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "FaromEditor",
+			"Path": "C:\\Users\\mi\\Documents\\Farom\\Farom\\Source\\FaromEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
