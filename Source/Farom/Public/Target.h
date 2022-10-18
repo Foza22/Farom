@@ -18,6 +18,7 @@ public:
 	ATarget();
 
 protected:
+	// Target collision
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		USphereComponent* SphereComp;
 };

@@ -88,6 +88,24 @@ void AFaromCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInp
 	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &AFaromCharacter::Reload);
 }
 
+void AFaromCharacter::SpawnWeapon()
+{
+	if (!GetWorld()) return;
+
+	// Spawn weapon
+	const auto Weapon = GetWorld()->SpawnActor<ABaseWeapon>(WeaponClass);
+	// If it successful, we attach it to our socket
+	if (Weapon)
+	{
+		FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, false);
+		Weapon->AttachToComponent(GetMesh(), AttachmentRules, "WeaponSocket");
+		Weapon->SetOwner(GetOwner());
+		Weapon->bCanFire = true;
+		// To make fire possible only with weapon
+		CurrWeapon = Weapon;
+	}
+}
+
 void AFaromCharacter::Fire()
 {
 	FVector ViewLocation;
@@ -102,6 +120,7 @@ void AFaromCharacter::Fire()
 
 void AFaromCharacter::Reload()
 {
+	// Get access to BaseWeapon and start reload
 	const auto Weapon = GetWeapon();
 	if (!Weapon) return;
 
@@ -136,24 +155,6 @@ void AFaromCharacter::Pickup()
 		}
 	}
 	
-}
-
-void AFaromCharacter::SpawnWeapon()
-{
-	if (!GetWorld()) return;
-
-	// Spawn weapon
-	const auto Weapon = GetWorld()->SpawnActor<ABaseWeapon>(WeaponClass);
-	// If it successful, we attach it to our socket
-	if (Weapon)
-	{
-		FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, false);
-		Weapon->AttachToComponent(GetMesh(), AttachmentRules, "WeaponSocket");
-		Weapon->SetOwner(GetOwner());
-		Weapon->bCanFire = true;
-		// To make fire possible only with weapon
-		CurrWeapon = Weapon;
-	}
 }
 
 void AFaromCharacter::TurnAtRate(float Rate)

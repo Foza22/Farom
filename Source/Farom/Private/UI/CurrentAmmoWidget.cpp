@@ -7,6 +7,7 @@
 
 int32 UCurrentAmmoWidget::GetAmmoInClip() const
 {
+	// Get access to BaseWeapon component and use it's functions
 	const auto Pawn = GetOwningPlayerPawn();
 	if (!Pawn) return 0;
 
@@ -19,6 +20,7 @@ int32 UCurrentAmmoWidget::GetAmmoInClip() const
 
 int32 UCurrentAmmoWidget::GetAmmoTotal() const
 {
+	// Get access to BaseWeapon component and use it's functions
 	const auto Pawn = GetOwningPlayerPawn();
 	if (!Pawn) return 0;
 
@@ -31,6 +33,7 @@ int32 UCurrentAmmoWidget::GetAmmoTotal() const
 
 bool UCurrentAmmoWidget::IsReloading() const
 {
+	// Get access to BaseWeapon component and use it's 
 	const auto Pawn = GetOwningPlayerPawn();
 	if (!Pawn) return false;
 

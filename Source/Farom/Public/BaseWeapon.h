@@ -76,12 +76,15 @@ protected:
 	UFUNCTION()
 		void OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
+	// Helping functions for reload and shooting
 	void DescreaseAmmo();
 	bool IsAmmoEmpty() const;
 	bool IsClipEmpty() const;
 	void ChangeClip();
+	// Debug function
 	void LogAmmo();
 
 private:
+	// Stores current amount of ammo
 	FAmmoData CurrentAmmo;
 };

@@ -11,6 +11,7 @@ void AFaromHUD::DrawHUD()
 	DrawCrosshair();
 }
 
+// Set up and draw simple crosshair
 void AFaromHUD::DrawCrosshair()
 {
 	const TInterval<float> Center(Canvas->SizeX * 0.5f, Canvas->SizeY * 0.5f);
