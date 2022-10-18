@@ -78,7 +78,7 @@ void ABaseWeapon::MakeShot(const FVector& ViewLocation, const FRotator& ViewRota
 	ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
 
 	// Spawn the projectile at the muzzle
-	GetWorld()->SpawnActor<ABaseProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+	GetWorld()->SpawnActor<ABaseProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
 
 	DescreaseAmmo();
 }

@@ -5,6 +5,7 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "Target.h"
 
 // Sets default values
 ABaseProjectile::ABaseProjectile()
@@ -21,6 +22,7 @@ ABaseProjectile::ABaseProjectile()
 	// Players can't walk on it
 	CollisionComp->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));
 	CollisionComp->CanCharacterStepUpOn = ECB_No;
+	CollisionComp->SetCollisionProfileName(FName("BlockAll"));
 
 	// Set as root component
 	RootComponent = CollisionComp;
@@ -37,9 +39,14 @@ ABaseProjectile::ABaseProjectile()
 
 void ABaseProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
+	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr))
 	{
 		// If projectile hit Target, it destroys and print message
+
+		if (OtherActor->IsA<ATarget>())
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Nice shot!"));
+		}
 
 		Destroy();
 	}
