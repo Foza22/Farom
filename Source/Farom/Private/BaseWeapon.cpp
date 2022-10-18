@@ -67,18 +67,17 @@ void ABaseWeapon::MakeShot(const FVector& ViewLocation, const FRotator& ViewRota
 	const FTransform SocketTransform = WeaponMesh->GetSocketTransform(MuzzleSocketName);
 	const FVector SpawnLocation = SocketTransform.GetLocation();
 
-
 	// Get ViewRotation and configure it
 	FRotator SpawnRotation = ViewRotation;
-	SpawnRotation.Yaw += 2.0f;
-	SpawnRotation.Pitch -= 5.0f;
+	SpawnRotation.Yaw += 1.0f;
+	SpawnRotation.Pitch -= 8.0f;
 
 	// Set Spawn Collision Handling Override
 	FActorSpawnParameters ActorSpawnParams;
 	ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
 
 	// Spawn the projectile at the muzzle
-	GetWorld()->SpawnActor<ABaseProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
+	GetWorld()->SpawnActor<ABaseProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 
 	DescreaseAmmo();
 }
