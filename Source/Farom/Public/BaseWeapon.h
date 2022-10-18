@@ -8,6 +8,21 @@
 
 class USkeletalMeshComponent;
 class UBoxComponent;
+class ABaseProjectile;
+
+USTRUCT(BlueprintType)
+struct FAmmoData
+{
+	GENERATED_USTRUCT_BODY()
+public:
+	// Amount of bullets in clip
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Weapon)
+		int32 BulletsAmount;
+
+	// Total amount of bullets
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Weapon)
+		int32 BulletsTotal;
+};
 
 UCLASS()
 class FAROM_API ABaseWeapon : public AActor
@@ -20,21 +35,53 @@ public:
 
 	// Assisting variable
 	bool bCanBeTaken;
+	bool bCanFire;
+	bool bReloading;
+
+	void Fire(const FVector& ViewLocation, const FRotator& ViewRotation);
+	void MakeShot(const FVector& ViewLocation, const FRotator& ViewRotation);
+
+	// Function to start reloading
+	void StartReload();
+
+	// Timer handle for reloading
+	FTimerHandle ReloadTimerHandle;
+
+	// Functions for UI
+	FAmmoData GetAmmoData() const { return CurrentAmmo; }
+	bool IsReloading() { return bReloading; }
 
 protected:
-
-private:
+	// Name for muzzle socket
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		FName MuzzleSocketName = "Muzzle";
 
 	// Mesh for our gun
 	UPROPERTY(VisibleAnywhere, Category = Mesh)
 		USkeletalMeshComponent* WeaponMesh;
 
 	// Create Box collider for our gun
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ColliderBox)
 		UBoxComponent* BoxCollider;
+
+	// Projectile class to spawn
+	UPROPERTY(EditDefaultsOnly, Category = Projectile)
+		TSubclassOf<ABaseProjectile> ProjectileClass;
+
+	// Information about ammo
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Weapon)
+		FAmmoData DefaultAmmo {30,120};
 
 	// Mark as CanBeTaken on overlapping
 	UFUNCTION()
-	void OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+		void OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
+	void DescreaseAmmo();
+	bool IsAmmoEmpty() const;
+	bool IsClipEmpty() const;
+	void ChangeClip();
+	void LogAmmo();
+
+private:
+	FAmmoData CurrentAmmo;
 };

@@ -49,6 +49,7 @@ AFaromCharacter::AFaromCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+
 }
 
 void AFaromCharacter::BeginPlay()
@@ -80,6 +81,32 @@ void AFaromCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInp
 
 	// Bind our pickup action
 	PlayerInputComponent->BindAction("Pickup", IE_Pressed, this, &AFaromCharacter::Pickup);
+
+	// Bind shooting
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AFaromCharacter::Fire);
+
+	// Bind reloading
+	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &AFaromCharacter::Reload);
+}
+
+void AFaromCharacter::Fire()
+{
+	FVector ViewLocation;
+	FRotator ViewRotation;
+	GetActorEyesViewPoint(ViewLocation, ViewRotation);
+	// If weapon created we can fire
+	if (CurrWeapon)
+	{
+		CurrWeapon->Fire(ViewLocation, ViewRotation);
+	}
+}
+
+void AFaromCharacter::Reload()
+{
+	const auto Weapon = GetWeapon();
+	if (!Weapon) return;
+
+	Weapon->StartReload();
 }
 
 void AFaromCharacter::LookUp(float Value)
@@ -109,7 +136,6 @@ void AFaromCharacter::Pickup()
 			SpawnWeapon();
 		}
 	}
-
 }
 
 void AFaromCharacter::SpawnWeapon()
@@ -123,6 +149,10 @@ void AFaromCharacter::SpawnWeapon()
 	{
 		FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, false);
 		Weapon->AttachToComponent(GetMesh(), AttachmentRules, "WeaponSocket");
+		Weapon->SetOwner(GetOwner());
+		Weapon->bCanFire = true;
+		// To make fire possible only with weapon
+		CurrWeapon = Weapon;
 	}
 }
 
